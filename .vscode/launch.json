@@ -8,7 +8,9 @@
             "name": "Debug Local File",
             "type": "Ruby",
             "request": "launch",
-            "program": "${workspaceRoot}/day_06/solution6.rb"
+            "program": "${workspaceRoot}/day_05/solution5.rb",
+            "cwd": "${workspaceRoot}/day_05"
+            
         }
     ]
 }

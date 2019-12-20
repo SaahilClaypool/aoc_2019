@@ -41,9 +41,11 @@ impl Program {
         }
     }
     fn step(&mut self) -> Option<i32> {
+        println!("{:?}", &self.mem[0..10]);
         let opt_meta = self.mem[self.idx];
 
         let opt = opt_meta % 100; // first two digits
+        println!("{}, {}, {}", opt, opt_meta, self.idx);
 
         let param_mode_a = ((opt_meta / 100) % 10) as i32;
         let param_mode_b = ((opt_meta / 1000) % 10) as i32;
@@ -55,14 +57,17 @@ impl Program {
         match opt {
             1 => { // add
                 self.mem[c as usize] = self.mem[a as usize] + self.mem[b as usize];
+                println!("add {}:{} + {}:{} -> {}", self.mem[a as usize], param_mode_a, self.mem[b as usize], param_mode_b,c);
                 self.idx += 4;
             },
             2 => { // mult
                 self.mem[c as usize] = self.mem[a as usize] * self.mem[b as usize];
+                println!("mul {}:{} * {}:{} -> {}", a, param_mode_a, b, param_mode_b, c);
                 self.idx += 4;
             },
             3 => { // get input 
                 self.mem[a as usize] = self.get_input();
+                println!("get -> {}", c);
                 self.idx += 2;
             },
             4 => { // output
