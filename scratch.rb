@@ -29,3 +29,47 @@ m.y
 
 p $:
 
+
+class C
+    def pub
+        p "I am pub"
+        priv
+        self.priv
+    end
+
+    private_methods :priv
+
+    def priv
+        p "I am private"
+    end
+
+
+    def my_yielder(nums)
+        for i in (0..nums - 1)
+            puts block
+            if block
+                block.call(i)
+        end
+    end
+end
+end
+
+
+def my_yielder(nums = 10, &block) # denotes a block
+
+    for i in (0..nums - 1)
+        # if block
+        if block_given? # also works if implicit block given
+            block.call(i)
+            yield i
+        else
+            puts "no block : #{block}"
+        end
+    end
+end
+
+my_yielder
+
+my_yielder {|i| puts "given block #{i}"}
+
+my_yielder {|i| puts "given block #{i}"}
